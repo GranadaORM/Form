@@ -1,0 +1,38 @@
+{
+    "name": "granadaorm/form",
+    "type": "library",
+    "description": "Form automation for Granada ORM models",
+    "homepage": "https://github.com/GranadaORM/Form",
+    "support": {
+        "issues": "https://github.com/GranadaORM/Form/issues",
+        "source": "https://github.com/GranadaORM/Form"
+    },
+    "license": [
+        "MIT"
+    ],
+    "authors": [
+        {
+            "name": "Josh Marshall",
+            "email": "josh@jmarshall.com.au",
+            "homepage": "https://www.jmarshall.com.au",
+            "role": "Developer"
+        }
+    ],
+    "scripts": {
+        "test": "phpunit"
+    },
+    "require": {
+        "php": ">=5.6.0",
+        "cakephp/chronos": "^2.0",
+        "doctrine/inflector": "^2.0",
+        "twig/twig": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Granada\\Form\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.6|^7.3"
+    }
+}
