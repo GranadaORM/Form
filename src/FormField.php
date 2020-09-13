@@ -14,7 +14,7 @@ class FormField {
     private $required;
     private $content;
     /**
-     * @var \Granada\Form $form
+     * @var \Granada\Form\Form $form
      */
     private $form;
 
