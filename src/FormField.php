@@ -73,8 +73,6 @@ class FormField {
         return $this;
     }
 
-<<<<<<< Updated upstream
-=======
     public function renderSelectOptions() {
         ob_start();
         foreach ($this->select_options as $value => $text) {
@@ -85,7 +83,6 @@ class FormField {
         return ob_get_clean();
     }
 
->>>>>>> Stashed changes
     public function render() {
         if ($this->content) {
             return $this->content;
