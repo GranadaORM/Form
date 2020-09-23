@@ -9,6 +9,7 @@ class FormField {
     private $value;
     private $tags;
     private $label;
+    private $select_options = [];
     private $helptext;
     private $length;
     private $required;
@@ -57,6 +58,11 @@ class FormField {
         return $this;
     }
 
+    public function setSelectOptions($data) {
+        $this->select_options = $data;
+        return $this;
+    }
+
     public function setRequired($data) {
         $this->required = $data;
         return $this;
@@ -67,6 +73,19 @@ class FormField {
         return $this;
     }
 
+<<<<<<< Updated upstream
+=======
+    public function renderSelectOptions() {
+        ob_start();
+        foreach ($this->select_options as $value => $text) {
+?>
+            <option value="<?= $value ?>" <?php if ($value == $this->value) { ?> selected <?php } ?>><?= $text ?></option>
+<?php
+        }
+        return ob_get_clean();
+    }
+
+>>>>>>> Stashed changes
     public function render() {
         if ($this->content) {
             return $this->content;
@@ -81,6 +100,7 @@ class FormField {
             'help' => $this->helptext,
             'name' => $this->name,
             'length' => $this->length,
+            'options' => $this->renderSelectOptions(),
             'required' => $this->required,
             'readonly' => in_array('readonly', $this->tags ?: []) ? 'readonly' : '',
         ));

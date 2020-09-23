@@ -33,6 +33,12 @@ class Form {
         if (!$field_name) {
             return new FormField(get_class($this));
         }
+        $options = [];
+        if ($this->model->fieldType($field_name) == 'reference') {
+            // Get list of possible results
+            $refmodel = $this->model->refModel($field_name);
+            $options = $refmodel::find_pairs_representation();
+        }
         return (new FormField(get_class($this)))
             ->setType($this->model->fieldType($field_name))
             ->setName($field_name)
@@ -41,6 +47,7 @@ class Form {
             ->setLabel($this->model->fieldHumanName($field_name))
             ->setHelptext($this->model->fieldHelpText($field_name))
             ->setLength($this->model->fieldLength($field_name))
+            ->setSelectOptions($options)
             ->setRequired($this->model->fieldIsRequired($field_name));
     }
 

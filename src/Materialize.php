@@ -31,6 +31,11 @@ class Materialize extends Form {
                     </select>
                 <?php } else if ($length > 255 || $length == 0 || $type == 'text') { ?>
                     <textarea name="{{ name }}" class="materialize-textarea" {{ readonly }}>{{ value|raw }}</textarea>
+                <?php } else if ($type == 'reference') { ?>
+                    <select name="{{ name }}">
+                        <option>-- None --</option>
+                        {{ options|raw }}
+                    </select>
                 <?php } else { ?>
                     <input type="text" name="{{ name }}" value="{{ value }}" maxlength="' . $length . '" data-length="' . $length . '" class="validate" {{ readonly }} />
                 <?php } ?>

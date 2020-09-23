@@ -42,6 +42,11 @@ class Bootstrap4 extends Form {
                     </select>
                 <?php } else if ($length > 255 || $length == 0 || $type == 'text') { ?>
                     <textarea name="{{ name }}" class="form-control" {{ readonly }}>{{ value|raw }}</textarea>
+                <?php } else if ($type == 'reference') { ?>
+                    <select name="{{ name }}" class="form-control">
+                        <option>-- None --</option>
+                        {{ options|raw }}
+                    </select>
                 <?php } else { ?>
                     <input type="text" name="{{ name }}" value="{{ value }}" maxlength="' . $length . '" data-length="' . $length . '" class="form-control" {{ readonly }} />
                 <?php } ?>
