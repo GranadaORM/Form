@@ -130,15 +130,10 @@ class Form {
         return '</form>';
     }
 
-    public function wrapperTemplate() {
-        return '{{ label }}{{ content|raw }}';
-    }
-
     public function fieldTemplate($type, $length, $tags) {
-        if ($type == 'submit') {
-            return '<input type="submit" name="{{ name }}" value="{{ value }}" />';
-        }
-        return '<input type="text" name="{{ name }}" value="{{ value }}" />';
+        return '<label for={{ label_for }}>{{ label }}{% if help %}
+        <i class="fas fa-question-circle" title="{{ help }}"></i>
+        {% endif %}</label><input type="text" name="{{ name }}" value="{{ value }}" />';
     }
 
     public function renderField($field) {

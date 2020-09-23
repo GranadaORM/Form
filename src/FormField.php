@@ -67,7 +67,7 @@ class FormField {
         return $this;
     }
 
-    private function renderContent() {
+    public function render() {
         if ($this->content) {
             return $this->content;
         }
@@ -76,22 +76,13 @@ class FormField {
         )));
         return $twig->render('template', array(
             'value' => $this->value,
+            'label' => $this->label,
+            'label_for' => $this->name,
+            'help' => $this->helptext,
             'name' => $this->name,
             'length' => $this->length,
             'required' => $this->required,
             'readonly' => in_array('readonly', $this->tags ?: []) ? 'readonly' : '',
-        ));
-    }
-
-    public function render() {
-        $twig = new \Twig\Environment(new \Twig\Loader\ArrayLoader(array(
-            'template' => $this->form->wrapperTemplate(),
-        )));
-        return $twig->render('template', array(
-            'label' => $this->label,
-            'label_for' => $this->name,
-            'help' => $this->helptext,
-            'content' => $this->renderContent(),
         ));
     }
 }
