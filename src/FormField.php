@@ -94,7 +94,7 @@ class FormField {
             return $this->content;
         }
         $twig = new \Twig\Environment(new \Twig\Loader\ArrayLoader(array(
-            'template' => $this->form->fieldTemplate($this->type, $this->length, $this->tags, $this->item),
+            'template' => $this->form->fieldTemplate($this->type, $this->length, $this->tags, $this->item, $this->name),
         )));
         return $twig->render('template', array(
             'value' => $this->value,

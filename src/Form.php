@@ -147,7 +147,7 @@ class Form {
      * @param \Granada\Granada|null $item
      * @return string
      */
-    public function fieldTemplate($type, $length, $tags, $item) {
+    public function fieldTemplate($type, $length, $tags, $item, $fieldname) {
         return '<label for={{ label_for }}>{{ label }}{% if help %}
         <i class="fas fa-question-circle" title="{{ help }}"></i>
         {% endif %}</label><input type="text" name="{{ name }}" value="{{ value }}" />';

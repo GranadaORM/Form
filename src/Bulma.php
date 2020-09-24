@@ -4,7 +4,7 @@ namespace Granada\Form;
 
 class Bulma extends Form {
 
-    public function fieldTemplate($type, $length, $tags, $item) {
+    public function fieldTemplate($type, $length, $tags, $item, $fieldname) {
         ob_start();
 ?>
         <div class="field">
