@@ -70,7 +70,7 @@ class Bootstrap3 extends Form {
                         {{ options|raw }}
                     </select>
                 <?php } else { ?>
-                    <input type="text" name="{{ name }}" value="{{ value }}" maxlength="' . $length . '" data-length="' . $length . '" class="form-control" {{ readonly }} />
+                    <input type="text" name="{{ name }}" value="{{ value }}" maxlength="<?= $length ?>" data-length="<?= $length ?>" class="form-control" {{ readonly }} />
                 <?php } ?>
             </div>
         </div>

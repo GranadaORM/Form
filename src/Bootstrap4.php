@@ -48,43 +48,11 @@ class Bootstrap4 extends Form {
                         {{ options|raw }}
                     </select>
                 <?php } else { ?>
-                    <input type="text" name="{{ name }}" value="{{ value }}" maxlength="' . $length . '" data-length="' . $length . '" class="form-control" {{ readonly }} />
+                    <input type="text" name="{{ name }}" value="{{ value }}" maxlength="<?= $length ?>" data-length="<?= $length ?>" class="form-control" {{ readonly }} />
                 <?php } ?>
             </div>
         </div>
 <?php
         return ob_get_clean();
-        if ($type == 'submit') {
-            return '<input type="submit" name="{{ name }}" value="{{ value }}" class="btn btn-default" {{ readonly }} />';
-        }
-        if ($type == 'date') {
-            return '<input type="date" name="{{ name }}" value="{{ value }}" class="form-control" {{ readonly }} />';
-        }
-        if ($type == 'datetime') {
-            return '<input type="datetime-local" name="{{ name }}" value="{{ value }}" class="form-control" {{ readonly }} />';
-        }
-        if ($type == 'time') {
-            return '<input type="time" name="{{ name }}" value="{{ value }}" class="form-control" {{ readonly }} />';
-        }
-        if ($type == 'color') {
-            return '<input type="color" name="{{ name }}" value="{{ value }}" class="form-control" {{ readonly }} />';
-        }
-        if ($type == 'email') {
-            return '<input type="email" name="{{ name }}" value="{{ value }}" class="form-control" {{ readonly }} />';
-        }
-        if ($type == 'bool') {
-            return '<input type="hidden" name="{{ name }}" value="0" />' .
-                '<input type="checkbox" name="{{ name }}" value="1" {% if value %}checked{% endif %} {{ readonly }} />';
-        }
-        if ($type == 'booltristate') {
-            return '<input type="hidden" name="{{ name }}" value="0" />' .
-                '<input type="checkbox" name="{{ name }}" value="1" {% if value %}checked{% endif %} {{ readonly }} />';
-        }
-        if ($length > 255 || $type == 'text') {
-            // Use textarea
-            return '<textarea name="{{ name }}" class="form-control" {{ readonly }}>{{ value|raw }}</textarea>';
-        }
-        return '<input type="text" name="{{ name }}" value="{{ value }}" maxlength="' . $length . '" class="form-control" {{ readonly }} />';
-        return parent::fieldTemplate($type, $length, $tags, $item, $fieldname);
     }
 }

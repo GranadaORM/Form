@@ -37,7 +37,7 @@ class Materialize extends Form {
                         {{ options|raw }}
                     </select>
                 <?php } else { ?>
-                    <input type="text" name="{{ name }}" value="{{ value }}" maxlength="' . $length . '" data-length="' . $length . '" class="validate" {{ readonly }} />
+                    <input type="text" name="{{ name }}" value="{{ value }}" maxlength="<?= $length ?>" data-length="<?= $length ?>" class="validate" {{ readonly }} />
                 <?php } ?>
                 <?php if ($type != 'bool') { ?>
                     <label for="{{ label_for }}">

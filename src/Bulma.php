@@ -46,7 +46,7 @@ class Bulma extends Form {
                         {{ options|raw }}
                     </select>
                 <?php } else { ?>
-                    <input type="text" name="{{ name }}" value="{{ value }}" maxlength="' . $length . '" data-length="' . $length . '" class="input" {{ readonly }} />
+                    <input type="text" name="{{ name }}" value="{{ value }}" maxlength="<?= $length ?>" data-length="<?= $length ?>" class="input" {{ readonly }} />
                 <?php } ?>
             </div>
         </div>
