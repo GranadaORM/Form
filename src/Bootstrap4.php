@@ -4,7 +4,7 @@ namespace Granada\Form;
 
 class Bootstrap4 extends Form {
 
-    public function fieldTemplate($type, $length, $tags) {
+    public function fieldTemplate($type, $length, $tags, $item) {
         ob_start();
 ?>
         <div class="form-group row">
@@ -85,6 +85,6 @@ class Bootstrap4 extends Form {
             return '<textarea name="{{ name }}" class="form-control" {{ readonly }}>{{ value|raw }}</textarea>';
         }
         return '<input type="text" name="{{ name }}" value="{{ value }}" maxlength="' . $length . '" class="form-control" {{ readonly }} />';
-        return parent::fieldTemplate($type, $length, $tags);
+        return parent::fieldTemplate($type, $length, $tags, $item);
     }
 }

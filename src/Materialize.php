@@ -4,7 +4,7 @@ namespace Granada\Form;
 
 class Materialize extends Form {
 
-    public function fieldTemplate($type, $length, $tags) {
+    public function fieldTemplate($type, $length, $tags, $item) {
         ob_start();
 ?>
         <div class="row">

@@ -26,7 +26,7 @@ class Bootstrap3 extends Form {
         ), $htmlOptions), 'none');
     }
 
-    public function fieldTemplate($type, $length, $tags) {
+    public function fieldTemplate($type, $length, $tags, $item) {
         ob_start();
 ?>
         <div class="form-group row">

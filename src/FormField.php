@@ -4,6 +4,7 @@ namespace Granada\Form;
 
 class FormField {
 
+    private $item;
     private $type;
     private $name;
     private $value;
@@ -21,6 +22,11 @@ class FormField {
 
     public function __construct($formclass) {
         $this->form = new $formclass;
+    }
+
+    public function setItem($data) {
+        $this->item = $data;
+        return $this;
     }
 
     public function setType($data) {
@@ -88,7 +94,7 @@ class FormField {
             return $this->content;
         }
         $twig = new \Twig\Environment(new \Twig\Loader\ArrayLoader(array(
-            'template' => $this->form->fieldTemplate($this->type, $this->length, $this->tags),
+            'template' => $this->form->fieldTemplate($this->type, $this->length, $this->tags, $this->item),
         )));
         return $twig->render('template', array(
             'value' => $this->value,

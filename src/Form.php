@@ -27,9 +27,10 @@ class Form {
     /**
      * Get the form field
      * @param string $field_name
+     * @param \Granada\Granada $item
      * @return FormField
      */
-    public function build($field_name = null) {
+    public function build($field_name = null, $item = null) {
         if (!$field_name) {
             return new FormField(get_class($this));
         }
@@ -40,6 +41,7 @@ class Form {
             $options = $refmodel::find_pairs_representation();
         }
         return (new FormField(get_class($this)))
+            ->setItem($item)
             ->setType($this->model->fieldType($field_name))
             ->setName($field_name)
             ->setValue($this->model->$field_name)
@@ -137,24 +139,44 @@ class Form {
         return '</form>';
     }
 
-    public function fieldTemplate($type, $length, $tags) {
+    /**
+     * Get the form template for this field in twig format
+     * @param string $type
+     * @param integer $length
+     * @param string[] $tags
+     * @param \Granada\Granada|null $item
+     * @return string
+     */
+    public function fieldTemplate($type, $length, $tags, $item) {
         return '<label for={{ label_for }}>{{ label }}{% if help %}
         <i class="fas fa-question-circle" title="{{ help }}"></i>
         {% endif %}</label><input type="text" name="{{ name }}" value="{{ value }}" />';
     }
 
-    public function renderField($field) {
-        return $this->build($field)
+    /**
+     * Render a form field
+     * @param string $field
+     * @param \Granada\Granada|null $item
+     * @return string
+     */
+    public function renderField($field, $item = null) {
+        return $this->build($field, $item)
             ->render();
     }
 
-    public function renderFields($fields = array()) {
+    /**
+     * Render a number of fields at once
+     * @param string[] $fields
+     * @param \Granada\Granada|null $item
+     * @return string
+     */
+    public function renderFields($fields = array(), $item = null) {
         $response = '';
         if (!$fields) {
             $fields = $this->model->formFields();
         }
         foreach ($fields as $field) {
-            $response .= $this->renderField($field);
+            $response .= $this->renderField($field, $item);
         }
         return $response;
     }
