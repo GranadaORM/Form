@@ -27,9 +27,10 @@ class Form {
     /**
      * Get the form field
      * @param string $field_name
+     * @param string|null $name_override
      * @return FormField
      */
-    public function build($field_name = null) {
+    public function build($field_name = null, $name_override = null) {
         if (!$field_name) {
             return new FormField(get_class($this));
         }
@@ -45,7 +46,7 @@ class Form {
         return (new FormField(get_class($this)))
             ->setItem($this->model)
             ->setType($this->model->fieldType($field_name))
-            ->setName($field_name)
+            ->setName($name_override ?: $field_name)
             ->setValue($this->model->$field_name)
             ->setTags($this->model->fieldTags($field_name))
             ->setLabel($this->model->fieldHumanName($field_name))
@@ -159,10 +160,11 @@ class Form {
     /**
      * Render a form field
      * @param string $field
+     * @param string|null $name_override
      * @return string
      */
-    public function renderField($field) {
-        return $this->build($field)
+    public function renderField($field, $name_override = null) {
+        return $this->build($field, $name_override)
             ->render();
     }
 
