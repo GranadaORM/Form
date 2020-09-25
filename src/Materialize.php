@@ -25,7 +25,7 @@ class Materialize extends Form {
                     <label><input type="hidden" name="{{ name }}" value="0" /><input type="checkbox" name="{{ name }}" value="1" {% if value == 1 %}checked{% endif %} {{ readonly }} /><span>{{ label }}</span></label>
                 <?php } else if ($type == 'booltristate') { ?>
                     <select name="{{ name }}">
-                        <option>Neither</option>
+                        <option value="">Neither</option>
                         <option value="1" {% if value == 1 %} selected {% endif %}>Yes</option>
                         <option value="0" {% if value is same as("0") %} selected {% endif %}>No</option>
                     </select>
