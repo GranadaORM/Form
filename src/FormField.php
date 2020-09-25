@@ -96,7 +96,7 @@ class FormField {
         $twig = new \Twig\Environment(new \Twig\Loader\ArrayLoader(array(
             'template' => $this->form->fieldTemplate($this->type, $this->length, $this->tags, $this->item, $this->name),
         )));
-        return $twig->render('template', array(
+        return '<span class="vf-field" data-name="' . $this->name . '">' . $twig->render('template', array(
             'value' => $this->value,
             'label' => $this->label,
             'label_for' => $this->name,
@@ -106,6 +106,6 @@ class FormField {
             'options' => $this->renderSelectOptions(),
             'required' => $this->required,
             'readonly' => in_array('readonly', $this->tags ?: []) ? 'readonly' : '',
-        ));
+        )) . '</span>';
     }
 }
