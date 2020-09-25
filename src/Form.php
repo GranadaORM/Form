@@ -7,7 +7,7 @@ class Form {
     /**
      * @var \Granada\Builder\ExtendedModel
      */
-    private $model;
+    protected $model;
 
     public function __construct($model = null) {
         $this->model = $model;
