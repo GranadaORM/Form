@@ -42,12 +42,12 @@ class Bootstrap4 extends Form {
                     </select>
                 <?php } else if ($type == 'reference') { ?>
                     <select name="{{ name }}" class="form-control">
-                        <option>-- None --</option>
+                        <option value="">-- None --</option>
                         {{ options|raw }}
                     </select>
                 <?php } else if ($type == 'enum') { ?>
                     <select name="{{ name }}" class="form-control">
-                        <option>-- None --</option>
+                        <option value="">-- None --</option>
                         {{ options|raw }}
                     </select>
                 <?php } else if ($length > 255 || $length == 0 || $type == 'text') { ?>
