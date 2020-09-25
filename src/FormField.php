@@ -99,7 +99,7 @@ class FormField {
         return '<span class="vf-field" data-name="' . $this->name . '">' . $twig->render('template', array(
             'value' => $this->value,
             'label' => $this->label,
-            'label_for' => $this->name,
+            'label_for' => uniqid('lf'),
             'help' => $this->helptext,
             'name' => $this->name,
             'length' => $this->length,
