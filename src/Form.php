@@ -27,10 +27,9 @@ class Form {
     /**
      * Get the form field
      * @param string $field_name
-     * @param \Granada\Granada $item
      * @return FormField
      */
-    public function build($field_name = null, $item = null) {
+    public function build($field_name = null) {
         if (!$field_name) {
             return new FormField(get_class($this));
         }
@@ -44,7 +43,7 @@ class Form {
             $options = $this->model->enum_options($field_name);
         }
         return (new FormField(get_class($this)))
-            ->setItem($item)
+            ->setItem($this->model)
             ->setType($this->model->fieldType($field_name))
             ->setName($field_name)
             ->setValue($this->model->$field_name)
@@ -148,6 +147,7 @@ class Form {
      * @param integer $length
      * @param string[] $tags
      * @param \Granada\Granada|null $item
+     * @param string $fieldname
      * @return string
      */
     public function fieldTemplate($type, $length, $tags, $item, $fieldname) {
@@ -159,27 +159,25 @@ class Form {
     /**
      * Render a form field
      * @param string $field
-     * @param \Granada\Granada|null $item
      * @return string
      */
-    public function renderField($field, $item = null) {
-        return $this->build($field, $item)
+    public function renderField($field) {
+        return $this->build($field)
             ->render();
     }
 
     /**
      * Render a number of fields at once
      * @param string[] $fields
-     * @param \Granada\Granada|null $item
      * @return string
      */
-    public function renderFields($fields = array(), $item = null) {
+    public function renderFields($fields = array()) {
         $response = '';
         if (!$fields) {
             $fields = $this->model->formFields();
         }
         foreach ($fields as $field) {
-            $response .= $this->renderField($field, $item);
+            $response .= $this->renderField($field);
         }
         return $response;
     }
