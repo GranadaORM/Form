@@ -40,6 +40,9 @@ class Form {
             $refmodel = $this->model->refModel($field_name);
             $options = $refmodel::find_pairs_representation();
         }
+        if ($this->model->fieldType($field_name) == 'enum') {
+            $options = $this->model->enum_options($field_name);
+        }
         return (new FormField(get_class($this)))
             ->setItem($item)
             ->setType($this->model->fieldType($field_name))

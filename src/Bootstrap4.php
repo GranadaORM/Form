@@ -40,13 +40,18 @@ class Bootstrap4 extends Form {
                         <option value="1" {% if value == 1 %} selected {% endif %}>Yes</option>
                         <option value="0" {% if value is same as("0") %} selected {% endif %}>No</option>
                     </select>
-                <?php } else if ($length > 255 || $length == 0 || $type == 'text') { ?>
-                    <textarea name="{{ name }}" class="form-control" {{ readonly }}>{{ value|raw }}</textarea>
                 <?php } else if ($type == 'reference') { ?>
                     <select name="{{ name }}" class="form-control">
                         <option>-- None --</option>
                         {{ options|raw }}
                     </select>
+                <?php } else if ($type == 'enum') { ?>
+                    <select name="{{ name }}" class="form-control">
+                        <option>-- None --</option>
+                        {{ options|raw }}
+                    </select>
+                <?php } else if ($length > 255 || $length == 0 || $type == 'text') { ?>
+                    <textarea name="{{ name }}" class="form-control" {{ readonly }}>{{ value|raw }}</textarea>
                 <?php } else { ?>
                     <input type="text" name="{{ name }}" value="{{ value }}" maxlength="<?= $length ?>" data-length="<?= $length ?>" class="form-control" {{ readonly }} />
                 <?php } ?>
