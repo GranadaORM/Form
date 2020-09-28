@@ -92,6 +92,15 @@ class FormField {
         return $this;
     }
 
+    public function setOverrides($data) {
+        if (is_array($data)) {
+            foreach ($data as $var => $val) {
+                $this->$var = $val;
+            }
+        }
+        return $this;
+    }
+
     public function renderSelectOptions() {
         ob_start();
         foreach ($this->select_options as $value => $text) {
@@ -337,6 +346,7 @@ class FormField {
         return $this->tag('input', $this->fieldOptions(array(
             'type' => 'submit',
             'id' => $this->input_id,
+            'name' => 'submit',
             'value' => $this->value,
         ), $overrides));
     }

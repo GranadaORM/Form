@@ -36,10 +36,10 @@ class Form {
     /**
      * Get the form field
      * @param string $field_name
-     * @param string|null $name_override
+     * @param array $overrides Elements in the field to override
      * @return FormField
      */
-    public function build($field_name = null, $name_override = null) {
+    public function build($field_name = null, $overrides = []) {
         if (!$field_name) {
             return $this->field();
         }
@@ -60,24 +60,25 @@ class Form {
         return $this->field()
             ->setItem($this->model)
             ->setType($this->model->fieldType($field_name))
-            ->setName($name_override ?: $field_name)
+            ->setName($field_name)
             ->setValue($this->model->$field_name)
             ->setTags($this->model->fieldTags($field_name))
             ->setLabel($this->model->fieldHumanName($field_name))
             ->setHelptext($this->model->fieldHelpText($field_name))
             ->setLength($this->model->fieldLength($field_name))
             ->setSelectOptions($options)
-            ->setRequired($this->model->fieldIsRequired($field_name));
+            ->setRequired($this->model->fieldIsRequired($field_name))
+            ->setOverrides($overrides);
     }
 
     /**
      * Render a form field
      * @param string $field
-     * @param string|null $name_override
+     * @param array $overrides Elements in the field to override
      * @return string
      */
-    public function renderField($field, $name_override = null) {
-        return $this->build($field, $name_override)
+    public function renderField($field, $overrides = []) {
+        return $this->build($field, $overrides)
             ->render();
     }
 
