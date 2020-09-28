@@ -87,6 +87,7 @@ class Materialize extends FormField {
                     }
                     echo $this->tag('label', array('for' => $this->input_id), 'long', ob_get_clean());
                 }
+                echo $this->tag('div', array('class' => 'error-message red-text'), 'long');
                 ?>
             </div>
         </div>
