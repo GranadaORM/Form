@@ -318,7 +318,7 @@ class FormField {
             'id' => $this->input_id,
             'data-name' => $this->name,
             'value' => 1,
-            'selected' => $this->value ? 'selected' : '',
+            'checked' => $this->value ? 'checked' : '',
         ), $overrides));
     }
 
