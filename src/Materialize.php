@@ -79,7 +79,7 @@ class Materialize extends FormField {
                 if ($this->type != 'bool') {
                     ob_start();
                     echo $this->label;
-				echo '&nbsp;';
+                    echo '&nbsp;';
                     if ($this->helptext) {
                         echo $this->tag('i', array(
                             'class' => 'fas fa-question-circle',
@@ -92,8 +92,7 @@ class Materialize extends FormField {
                 ?>
             </div>
         </div>
-    <?php
+<?php
         return ob_get_clean();
     }
-
 }
