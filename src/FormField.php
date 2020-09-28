@@ -103,6 +103,11 @@ class FormField {
 
     public function renderSelectOptions() {
         ob_start();
+        if (!array_key_exists('', $this->select_options)) {
+            echo $this->tag('option', array(
+                'value' => '',
+            ), 'long', '-- None --');
+        }
         foreach ($this->select_options as $value => $text) {
             echo $this->tag('option', array(
                 'value' => $value,
