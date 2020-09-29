@@ -14,6 +14,8 @@ class Materialize extends FormField {
                     echo $this->submitField(array(
                         'class' => 'btn',
                     ));
+                } else if ($this->hasTag('readonly')) {
+			        ?><input disabled="" value="<?= $this->value ?>" id="disabled" type="text" class="validate"><?php
                 } else if ($this->type == 'date') {
                     echo $this->dateField(array(
                         'class' => 'validate',
