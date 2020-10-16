@@ -22,6 +22,22 @@ class Form {
         return $field->setItem($this->model);
     }
 
+    /**
+     * Is the form in create mode, e.g. has an empty model
+     * @return bool
+     */
+    public function isCreateMode() {
+        return $this->model->is_new();
+    }
+
+    /**
+     * Is the form in update mode, e.g. has a model attached from the database
+     * @return bool
+     */
+    public function isUpdateMode() {
+        return !$this->isCreateMode();
+    }
+
     public function getFields($field_names = null) {
         if (is_null($field_names)) {
             $field_names = $this->model->formFields();
