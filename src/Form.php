@@ -63,7 +63,12 @@ class Form {
         if ($this->model->fieldType($field_name) == 'reference') {
             // Get list of possible results
             $refmodel = $this->model->refModel($field_name);
-            $options = $refmodel::find_pairs_representation();
+            $options = $refmodel::defaultFilter()->find_pairs_representation();
+            if (!array_key_exists($this->model->$field_name, $options)) {
+                foreach ($refmodel::where_id($this->model->$field_name)->find_pairs_representation() as $id => $representation) {
+                    $options[$id] = $representation;
+                }
+            }
         }
         if ($this->model->fieldType($field_name) == 'enum') {
             $options = $this->model->enum_options($field_name);
