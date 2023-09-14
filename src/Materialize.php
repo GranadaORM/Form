@@ -16,7 +16,7 @@ class Materialize extends FormField {
                     ));
                 } else if ($this->hasTag('_readonly')) {
 			        ?><input disabled="" value="<?= $this->value ?>" id="disabled" type="text" class="validate"><?php
-                } else if ($this->form->isUpdateMode() && $this->hasTag('_readonly_updates')) {
+                } else if ($this->form && $this->form->isUpdateMode() && $this->hasTag('_readonly_updates')) {
 			        ?><input disabled="" value="<?= $this->value ?>" id="disabled" type="text" class="validate"><?php
                 } else if ($this->type == 'date') {
                     echo $this->dateField(array(
